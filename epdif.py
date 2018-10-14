@@ -60,4 +60,4 @@ def epd_init():
     SPI.mode = 0b00
     return 0;
 
-### END OF FILE ###
+### FILE END ###

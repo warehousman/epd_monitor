@@ -1,9 +1,9 @@
 ##
  #  @filename   :   main.cpp
- #  @brief      :   1.54inch e-paper display demo
+ #  @brief      :   epd1in54b e-paper demo
  #  @author     :   Yehui from Waveshare
  #
- #  Copyright (C) Waveshare     September 9 2017
+ #  Copyright (C) Waveshare     July 24 2017
  #
  # Permission is hereby granted, free of charge, to any person obtaining a copy
  # of this software and associated documnetation files (the "Software"), to deal
@@ -24,63 +24,48 @@
  # THE SOFTWARE.
  ##
 
-import epd1in54
-import time
+import epd1in54b
 import Image
-import ImageDraw
 import ImageFont
+import ImageDraw
+#import imagedata
+
+COLORED = 1
+UNCOLORED = 0
 
 def main():
-    epd = epd1in54.EPD()
-    epd.init(epd.lut_full_update)
+    epd = epd1in54b.EPD()
+    epd.init()
+
+    # clear the frame buffer
+    frame_black = [0xFF] * (epd.width * epd.height / 8)
+    frame_red = [0xFF] * (epd.width * epd.height / 8)
 
     # For simplicity, the arguments are explicit numerical coordinates
-    image = Image.new('1', (epd1in54.EPD_WIDTH, epd1in54.EPD_HEIGHT), 255)  # 255: clear the frame
-    draw = ImageDraw.Draw(image)
-    font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 24)
-    draw.rectangle((0, 10, 200, 34), fill = 0)
-    draw.text((8, 12), 'Hello world!', font = font, fill = 255)
-    draw.text((8, 36), 'e-Paper Demo', font = font, fill = 0)
-    draw.line((16, 60, 56, 60), fill = 0)
-    draw.line((56, 60, 56, 110), fill = 0)
-    draw.line((16, 110, 56, 110), fill = 0)
-    draw.line((16, 110, 16, 60), fill = 0)
-    draw.line((16, 60, 56, 110), fill = 0)
-    draw.line((56, 60, 16, 110), fill = 0)
-    draw.arc((90, 60, 150, 120), 0, 360, fill = 0)
-    draw.rectangle((16, 130, 56, 180), fill = 0)
-    draw.chord((90, 130, 150, 190), 0, 360, fill = 0)
-    
-    epd.clear_frame_memory(0xFF)
-    epd.set_frame_memory(image, 0, 0)
-    epd.display_frame()
+    epd.draw_rectangle(frame_black, 10, 60, 50, 110, COLORED);
+    epd.draw_line(frame_black, 10, 60, 50, 110, COLORED);
+    epd.draw_line(frame_black, 50, 60, 10, 110, COLORED);
+    epd.draw_circle(frame_black, 120, 80, 30, COLORED);
+    epd.draw_filled_rectangle(frame_red, 10, 130, 50, 180, COLORED);
+    epd.draw_filled_rectangle(frame_red, 0, 6, 200, 26, COLORED);
+    epd.draw_filled_circle(frame_red, 120, 150, 30, COLORED);
 
-    epd.delay_ms(2000)
+    # write strings to the buffer
+    font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 18)
+    epd.display_string_at(frame_black, 30, 30, "e-Paper Demo", font, COLORED)
+    epd.display_string_at(frame_red, 28, 10, "Hello world!", font, UNCOLORED)
+    # display the frame
+    epd.display_frame(frame_black, frame_red)
 
-    # for partial update
-    epd.init(epd.lut_partial_update)
-    image = Image.open('monocolor.bmp')
-##
- # there are 2 memory areas embedded in the e-paper display
- # and once the display is refreshed, the memory area will be auto-toggled,
- # i.e. the next action of SetFrameMemory will set the other memory area
- # therefore you have to set the frame memory twice.
- ##     
-    epd.set_frame_memory(image, 0, 0)
-    epd.display_frame()
-    epd.set_frame_memory(image, 0, 0)
-    epd.display_frame()
+    # display images
+    frame_black = epd.get_frame_buffer(Image.open('black.bmp'))
+    frame_red = epd.get_frame_buffer(Image.open('red.bmp'))
+    epd.display_frame(frame_black, frame_red)
 
-    time_image = Image.new('1', (96, 32), 255)  # 255: clear the frame
-    draw = ImageDraw.Draw(time_image)
-    font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 32)
-    image_width, image_height  = time_image.size
-    while (True):
-        # draw a rectangle to clear the image
-        draw.rectangle((0, 0, image_width, image_height), fill = 255)
-        draw.text((0, 0), time.strftime('%M:%S'), font = font, fill = 0)
-        epd.set_frame_memory(time_image.rotate(90), 80, 80)
-        epd.display_frame()
+    epd.sleep()
+
+    # You can get frame buffer from an image or import the buffer directly:
+    #epd.display_frame(imagedata.IMAGE_BLACK, imagedata.IMAGE_RED)
 
 if __name__ == '__main__':
     main()
