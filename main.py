@@ -55,7 +55,7 @@ def main():
 
     # write strings to the buffer
     font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 18)
-    epd.display_string_at(frame_black, 30, 30, get_temp(), font, COLORED)
+    epd.display_string_at(frame_black, 60, 60, get_temp(), font, COLORED)
     epd.display_string_at(frame_red, 28, 10, "Hello world!", font, UNCOLORED)
     # display the frame
     epd.display_frame(frame_black, frame_red)
