@@ -64,7 +64,7 @@ def show():
     # display the frame
     epd.display_frame(frame_black, frame_red)
     time.sleep(5)
-    epd.sleep()
+#    epd.sleep()
 
 if __name__ == '__main__':
     while True:
