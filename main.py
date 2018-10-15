@@ -52,20 +52,11 @@ def show():
     frame_red = [0xFF] * 5000
 
 # draw red headers
-#    epd.draw_filled_rectangle(frame_red, 10, 10, 190, 36, COLORED)
-#    epd.draw_filled_rectangle(frame_red, 10, 110, 190, 136, COLORED)
-#    epd.display_string_at(frame_red, 28, 10, "GPU", font_w, UNCOLORED)
-#    epd.display_string_at(frame_red, 28, 110, "CPU", font_w, UNCOLORED)
-#    epd.display_frame(frame_black, frame_red) 
-
     epd.draw_filled_rectangle(frame_red, 5, 5, 195, 50, COLORED)
     epd.draw_filled_rectangle(frame_red, 5, 105, 195, 150, COLORED)
     
     epd.display_string_at(frame_red, 28, 10, "GPU:", font_b, UNCOLORED)
     epd.display_string_at(frame_red, 28, 110, "CPU:", font_b, UNCOLORED)  
-
-    epd.display_frame(frame_black, frame_red)
-
 
     epd.draw_rectangle(frame_black, 5, 5, 195, 95, COLORED)
     epd.draw_rectangle(frame_black, 5, 50, 195, 95, COLORED)
