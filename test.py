@@ -1,4 +1,5 @@
 import time
+import math
 
 import epd1in54b
 from PIL import Image
