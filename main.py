@@ -69,8 +69,8 @@ def show():
     epd.draw_rectangle(frame_black, 100, 150, 100, 195, COLORED)
 
 # write strings to the buffer
-    epd.display_string_at(frame_black, 28, 10, "GPU:", font_w, COLORED)
-    epd.display_string_at(frame_black, 28, 110, "CPU:", font_w, COLORED)    
+    epd.display_string_at(frame_black, 28, 10, "GPU:", font_b, UNCOLORED)
+    epd.display_string_at(frame_black, 28, 110, "CPU:", font_b, UNCOLORED)    
     epd.display_string_at(frame_black, 20, 60, str(data['gpu-temperature']), font_b, COLORED)
     epd.display_string_at(frame_black, 60, 60, "C", font_b2, COLORED)
     epd.display_string_at(frame_black, 130, 60, str(data['gpu-usage']), font_b, COLORED)
