@@ -11,6 +11,7 @@ import epd1in54b
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
+import imagedata
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -28,6 +29,7 @@ font_b = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf
 font_b2 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 24)
 
 epd = epd1in54b.EPD()
+epd.display_frame(imagedata.IMAGE_BLACK, imagedata.IMAGE_RED)
 
 def get_stats():
     r=requests.get(endpoint, auth=HTTPBasicAuth(username, password))
