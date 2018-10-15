@@ -15,12 +15,11 @@ username = "MSIAfterburner"
 password = "17cc95b4017d496f82"
 endpoint = "http://192.168.1.151:82/mahm"
 
-r=requests.get(endpoint, auth=HTTPBasicAuth(username, password))
-
 COLORED = 1
 UNCOLORED = 0
 
 def get_stats():
+r=requests.get(endpoint, auth=HTTPBasicAuth(username, password))    
     if r.status_code == 200:
         returnDatas = {}
         xmldoc = parseString(r.text.encode('utf-8'))
