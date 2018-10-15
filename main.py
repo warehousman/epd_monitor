@@ -4,6 +4,7 @@
  #
  #  Copyright (C) warehousman     October 15 2018
 
+import math
 import time
 import epd1in54b
 from PIL import Image
@@ -35,7 +36,7 @@ def get_stats():
         for s in dataslist:
             childs = s.childNodes
             key = slugify(childs[0].firstChild.nodeValue)
-            returnDatas[key] = childs[5].firstChild.nodeValue
+            returnDatas[key] = math.trunc(float(childs[5].firstChild.nodeValue))
 
         return (returnDatas)
 
@@ -62,10 +63,10 @@ def show():
     epd.display_string_at(frame_black, 110, 160, data['cpu-usage'], font_b, COLORED)
     # display the frame
     epd.display_frame(frame_black, frame_red)
-
+    time.sleep(5)
     epd.sleep()
 
 if __name__ == '__main__':
     while True:
         show()
-        time.sleep(10)
+        time.sleep(5)
