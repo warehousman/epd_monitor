@@ -30,7 +30,6 @@ font_w = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf
 font_b = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 32)
 
 epd = epd1in54b.EPD()
-epd.init()
 
 def get_stats():
     if r.status_code == 200:
@@ -68,6 +67,7 @@ def show():
 
 if __name__ == '__main__':
     while True:
+        epd.init()
         show()
         epd.sleep()
         time.sleep(5)
