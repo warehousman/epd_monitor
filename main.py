@@ -26,6 +26,12 @@ UNCOLORED = 0
 
 r=requests.get(endpoint, auth=HTTPBasicAuth(username, password))
 
+font_w = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 28)
+font_b = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 32)
+
+epd = epd1in54b.EPD()
+epd.init()
+
 def get_stats():
     if r.status_code == 200:
         returnDatas = {}
@@ -39,10 +45,6 @@ def get_stats():
         return (returnDatas)
 
 def show():
-    epd = epd1in54b.EPD()
-    epd.init()
-    font_w = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 28)
-    font_b = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 32)
     data = get_stats()
 
     # clear the frame buffer
@@ -54,6 +56,7 @@ def show():
     epd.draw_filled_rectangle(frame_red, 10, 110, 190, 136, COLORED)
     epd.display_string_at(frame_red, 28, 10, "GPU", font_w, UNCOLORED)
     epd.display_string_at(frame_red, 28, 110, "CPU", font_w, UNCOLORED)
+    epd.display_frame(frame_black, frame_red)
 
     # write strings to the buffer
     epd.display_string_at(frame_black, 20, 60, str(data['gpu-temperature']), font_b, COLORED)
@@ -62,10 +65,9 @@ def show():
     epd.display_string_at(frame_black, 110, 160, str(data['cpu-usage']), font_b, COLORED)
     # display the frame
     epd.display_frame(frame_black, frame_red)
-    epd.sleep()
 
 if __name__ == '__main__':
-    show()
-#    while True:
-#        show()
-#        time.sleep(5)
+    while True:
+        show()
+        epd.sleep()
+        time.sleep(5)
