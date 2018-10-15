@@ -58,8 +58,8 @@ def show():
 #    epd.display_string_at(frame_red, 28, 110, "CPU", font_w, UNCOLORED)
 #    epd.display_frame(frame_black, frame_red)
 
-    epd.draw_line(frame_black, 100, 0, 100, 200, COLORED);
-    epd.draw_line(frame_black, 0, 100, 100, 100, COLORED);
+    epd.draw_line(frame_black, 100, 10, 100, 200, COLORED)
+    epd.draw_line(frame_black, 0, 100, 100, 100, COLORED)
 
 # write strings to the buffer
     epd.display_string_at(frame_black, 28, 10, "GPU:", font_b, COLORED)
