@@ -60,6 +60,7 @@ def show():
 
     epd.draw_rectangle(frame_black, 5, 5, 195, 95, COLORED)
     epd.draw_rectangle(frame_black, 5, 50, 195, 95, COLORED)
+    epd.draw_rectangle(frame_black, 100, 50, 100, 95, COLORED)
     epd.draw_rectangle(frame_black, 5, 105, 195, 195, COLORED)
     epd.draw_rectangle(frame_black, 5, 150, 195, 195, COLORED)
 
