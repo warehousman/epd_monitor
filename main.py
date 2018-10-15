@@ -25,9 +25,9 @@
  ##
 
 import epd1in54b
-from PIL import Image
-from PIL import ImageFont
-from PIL import ImageDraw
+import Image
+import ImageFont
+import ImageDraw
 #import imagedata
 
 COLORED = 1
@@ -38,8 +38,8 @@ def main():
     epd.init()
 
     # clear the frame buffer
-    frame_black = [0xFF] * (epd.width * epd.height / 8)
-    frame_red = [0xFF] * (epd.width * epd.height / 8)
+    frame_black = [0xFF] * 5000
+    frame_red = [0xFF] * 5000
 
     # For simplicity, the arguments are explicit numerical coordinates
     epd.draw_rectangle(frame_black, 10, 60, 50, 110, COLORED);
