@@ -81,7 +81,7 @@ def show():
 
 if __name__ == '__main__':
     while True:
-        epd.init()
+#        epd.init()
         show()
-        epd.sleep()
+#        epd.sleep()
         time.sleep(10)
