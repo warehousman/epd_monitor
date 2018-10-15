@@ -61,7 +61,7 @@ def show():
     epd.draw_rectangle(frame_black, 5, 5, 195, 95, COLORED)
     epd.draw_rectangle(frame_black, 5, 50, 195, 95, COLORED)
     epd.draw_rectangle(frame_black, 5, 105, 195, 195, COLORED)
-    epd.draw_rectangle(frame_black, 5, 155, 195, 195, COLORED)
+    epd.draw_rectangle(frame_black, 5, 145, 195, 195, COLORED)
 
 # write strings to the buffer
     epd.display_string_at(frame_black, 28, 10, "GPU:", font_b, COLORED)
