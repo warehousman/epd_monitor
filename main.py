@@ -20,7 +20,6 @@ password = "17cc95b4017d496f82"
 endpoint = "http://192.168.1.151:82/mahm"
 
 epd = epd1in54b.EPD()
-epd.init()
 
 COLORED = 1
 UNCOLORED = 0
@@ -40,6 +39,7 @@ def get_stats():
         return (returnDatas)
 
 def show():
+    epd.init()
     font_w = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 28)
     font_b = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 32)
     data = get_stats()
