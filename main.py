@@ -55,8 +55,8 @@ def show():
     epd.display_string_at(frame_red, 28, 110, "CPU", font_w, UNCOLORED)
 
     # write strings to the buffer
-    epd.display_string_at(frame_black, 60, 60, data[gpu-temperature], font_b, COLORED)
-    epd.display_string_at(frame_black, 90, 60, data[gpu-usage], font_b, COLORED)
+    epd.display_string_at(frame_black, 60, 60, data['gpu-temperature'], font_b, COLORED)
+    epd.display_string_at(frame_black, 90, 60, data['gpu-usage'], font_b, COLORED)
     # display the frame
     epd.display_frame(frame_black, frame_red)
 
