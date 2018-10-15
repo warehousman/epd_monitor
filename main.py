@@ -51,12 +51,14 @@ def show():
 #    epd.draw_circle(frame_black, 120, 80, 30, COLORED)
 #    epd.draw_filled_rectangle(frame_red, 10, 130, 50, 180, COLORED)
     epd.draw_filled_rectangle(frame_red, 0, 6, 200, 36, COLORED)
+    epd.draw_filled_rectangle(frame_red, 0, 100, 200, 36, COLORED)
 #    epd.draw_filled_circle(frame_red, 120, 150, 30, COLORED)
 
     # write strings to the buffer
     font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 28)
     epd.display_string_at(frame_black, 60, 60, get_temp(), font, COLORED)
-    epd.display_string_at(frame_red, 28, 10, "Hello world!", font, UNCOLORED)
+    epd.display_string_at(frame_red, 28, 10, "GPU", font, UNCOLORED)
+    epd.display_string_at(frame_red, 28, 110, "CPU", font, UNCOLORED)
     # display the frame
     epd.display_frame(frame_black, frame_red)
 
