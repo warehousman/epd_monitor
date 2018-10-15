@@ -28,6 +28,7 @@ r=requests.get(endpoint, auth=HTTPBasicAuth(username, password))
 
 font_w = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 28)
 font_b = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 32)
+font_b2 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 24)
 
 epd = epd1in54b.EPD()
 
@@ -61,13 +62,13 @@ def show():
     epd.display_string_at(frame_black, 28, 10, "GPU:", font_b, COLORED)
     epd.display_string_at(frame_black, 28, 110, "CPU:", font_b, COLORED)    
     epd.display_string_at(frame_black, 20, 60, str(data['gpu-temperature']), font_b, COLORED)
-    epd.display_string_at(frame_black, 60, 60, "*C", font_b, COLORED)
+    epd.display_string_at(frame_black, 60, 60, "*C", font_b2, COLORED)
     epd.display_string_at(frame_black, 110, 60, str(data['gpu-usage']), font_b, COLORED)
-    epd.display_string_at(frame_black, 150, 60, "%", font_b, COLORED)
+    epd.display_string_at(frame_black, 150, 60, "%", font_b2, COLORED)
     epd.display_string_at(frame_black, 20, 160, str(data['cpu-temperature']), font_b, COLORED)
-    epd.display_string_at(frame_black, 60, 160, "*C", font_b, COLORED)
+    epd.display_string_at(frame_black, 60, 160, "*C", font_b2, COLORED)
     epd.display_string_at(frame_black, 110, 160, str(data['cpu-usage']), font_b, COLORED)
-    epd.display_string_at(frame_black, 1500, 160, "%", font_b, COLORED)
+    epd.display_string_at(frame_black, 150, 160, "%", font_b2, COLORED)
     # display the frame
     epd.display_frame(frame_black, frame_red)
 
@@ -76,4 +77,4 @@ if __name__ == '__main__':
         epd.init()
         show()
         epd.sleep()
-        time.sleep(5)
+        time.sleep(10)
