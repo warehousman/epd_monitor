@@ -56,14 +56,14 @@ def show():
 #    epd.draw_filled_rectangle(frame_red, 10, 110, 190, 136, COLORED)
 #    epd.display_string_at(frame_red, 28, 10, "GPU", font_w, UNCOLORED)
 #    epd.display_string_at(frame_red, 28, 110, "CPU", font_w, UNCOLORED)
-#    epd.display_frame(frame_black, frame_red)
-
-    epd.display_string_at(frame_red, 28, 10, "GPU:", font_b, UNCOLORED)
-    epd.display_string_at(frame_red, 28, 110, "CPU:", font_b, UNCOLORED)   
+#    epd.display_frame(frame_black, frame_red) 
 
     epd.draw_filled_rectangle(frame_red, 5, 5, 195, 50, COLORED)
     epd.draw_filled_rectangle(frame_red, 5, 105, 195, 150, COLORED)
     
+    epd.display_string_at(frame_red, 28, 10, "GPU:", font_b, UNCOLORED)
+    epd.display_string_at(frame_red, 28, 110, "CPU:", font_b, UNCOLORED)  
+
     epd.display_frame(frame_black, frame_red)
 
 
