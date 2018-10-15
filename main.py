@@ -28,8 +28,8 @@ UNCOLORED = 0
 font_b = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 32)
 font_b2 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 24)
 
-epd.init()
 epd = epd1in54b.EPD()
+epd.init()
 epd.display_frame(imagedata.IMAGE_BLACK, imagedata.IMAGE_RED)
 
 def get_stats():
