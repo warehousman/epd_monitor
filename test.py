@@ -31,6 +31,8 @@ def get_stats():
             returnDatas[key] = math.trunc(float(childs[5].firstChild.nodeValue))
 
         print (returnDatas)
+    else:
+        print (r)    
 
 def main():
     epd = epd1in54b.EPD()
