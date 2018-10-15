@@ -58,10 +58,8 @@ def show():
 #    epd.display_string_at(frame_red, 28, 110, "CPU", font_w, UNCOLORED)
 #    epd.display_frame(frame_black, frame_red)
 
-    epd.draw_line(frame_black, 100, 10, 100, 200, COLORED)
+    epd.draw_rectangle(frame_black, 100, 10, 100, 200, COLORED)
     epd.draw_line(frame_black, 0, 100, 100, 100, COLORED)
-    epd.draw_line(frame_black, 10, 60, 50, 110, COLORED);
-    epd.draw_line(frame_black, 50, 60, 10, 110, COLORED);
     epd.display_frame(frame_black, frame_red)
 
 # write strings to the buffer
