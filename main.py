@@ -59,11 +59,11 @@ def show():
 #    epd.display_frame(frame_black, frame_red)
 
     
-    epd.draw_filled_rectangle(frame_red, 5, 5, 195, 95, COLORED)
+    
     epd.draw_rectangle(frame_black, 5, 5, 195, 95, COLORED)
     epd.draw_rectangle(frame_black, 5, 50, 195, 95, COLORED)
     epd.draw_rectangle(frame_black, 100, 50, 100, 95, COLORED)
-    epd.draw_filled_rectangle(frame_red, 5, 105, 195, 195, COLORED)
+    
     epd.draw_rectangle(frame_black, 5, 105, 195, 195, COLORED)
     epd.draw_rectangle(frame_black, 5, 150, 195, 195, COLORED)
     epd.draw_rectangle(frame_black, 100, 150, 100, 195, COLORED)
@@ -81,6 +81,11 @@ def show():
     epd.display_string_at(frame_black, 170, 160, "%", font_b2, COLORED)
     # display the frame
     epd.display_frame(frame_black, frame_red)
+
+    epd.draw_filled_rectangle(frame_red, 5, 5, 195, 95, COLORED)
+    epd.draw_filled_rectangle(frame_red, 5, 105, 195, 195, COLORED)
+    epd.display_frame(frame_black, frame_red)
+
 
 if __name__ == '__main__':
     while True:
