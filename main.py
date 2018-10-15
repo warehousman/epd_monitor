@@ -83,5 +83,5 @@ if __name__ == '__main__':
     while True:
         epd.init()
         show()
-#        epd.sleep()
+        epd.sleep()
         time.sleep(10)
