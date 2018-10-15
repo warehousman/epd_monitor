@@ -33,8 +33,6 @@ epd.init()
 frame_black = [0xFF] * 5000
 frame_red = [0xFF] * 5000
 epd.draw_filled_rectangle(frame_red, 0, 0, 200, 200, COLORED)
-epd.display_frame(frame_black, frame_red)
-time.sleep(5)
 epd.draw_filled_rectangle(frame_black, 0, 0, 200, 200, COLORED)
 epd.display_frame(frame_black, frame_red)
 time.sleep(5)
