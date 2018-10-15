@@ -82,7 +82,7 @@ def show():
     epd.display_string_at(frame_red, 28, 110, "CPU:", font_b, UNCOLORED)  
 
     # display the frame
-    epd.display_frame(frame_black, frame_red)
+    epd.display_frame(frame_red)
 
 
 if __name__ == '__main__':
