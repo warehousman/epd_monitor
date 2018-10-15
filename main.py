@@ -65,6 +65,7 @@ def show():
     epd.sleep()
 
 if __name__ == '__main__':
-    while True:
-        show()
-        time.sleep(5)
+    show()
+#    while True:
+#        show()
+#        time.sleep(5)
