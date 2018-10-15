@@ -80,7 +80,9 @@ def show():
 
     # draw red headers
     epd.draw_filled_rectangle(frame_red, 5, 5, 195, 50, COLORED)
+    epd.draw_filled_rectangle(frame_black, 5, 5, 195, 50, COLORED)
     epd.draw_filled_rectangle(frame_red, 5, 105, 195, 150, COLORED)
+    epd.draw_filled_rectangle(frame_black, 5, 105, 195, 150, COLORED)
     
     epd.display_string_at(frame_red, 28, 10, "GPU:", font_b, UNCOLORED)
     epd.display_string_at(frame_red, 28, 110, "CPU:", font_b, UNCOLORED)  
