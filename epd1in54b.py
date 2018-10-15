@@ -78,7 +78,7 @@ class EPD:
         self.busy_pin = epdif.BUSY_PIN
         self.width = EPD_WIDTH
         self.height = EPD_HEIGHT
-        self.rotate = ROTATE_0
+        self.rotate = ROTATE_90
 
     lut_vcom0 = [  
         0x0E, 0x14, 0x01, 0x0A, 0x06, 0x04, 0x0A, 0x0A,

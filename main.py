@@ -39,7 +39,6 @@ def get_temp():
 def show():
     epd = epd1in54b.EPD()
     epd.init()
-    epd.set_rotate(180)
 
     # clear the frame buffer
     frame_black = [0xFF] * 5000
