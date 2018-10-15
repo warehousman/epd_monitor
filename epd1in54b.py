@@ -25,9 +25,9 @@
  #
 
 import epdif
-import Image
-import ImageDraw
-import ImageFont
+from pillow import Image
+from pillow import ImageDraw
+from pillow import ImageFont
 import RPi.GPIO as GPIO
 
 # Display resolution
