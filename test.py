@@ -48,7 +48,7 @@ def main():
     #epd.display_frame(imagedata.IMAGE_BLACK, imagedata.IMAGE_RED)
 
 if __name__ == '__main__':
-    while True
-    get_stats()
-    main()
-    time.sleep(10)
+    while True:
+        get_stats()
+        main()
+        time.sleep(10)
