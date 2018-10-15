@@ -50,7 +50,8 @@ def get_stats():
 
         return (returnDatas)
     else:
-        return returnDatas = {'gpu-temperature': 'n/a', 'gpu-usage': 'n/a','cpu-temperature': 'n/a','cpu-usage': 'n/a'}
+        returnDatas = {'gpu-temperature': 'n/a', 'gpu-usage': 'n/a','cpu-temperature': 'n/a','cpu-usage': 'n/a'}
+        return (returnDatas)
 
 def show():
     data = get_stats()
