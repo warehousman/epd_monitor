@@ -71,9 +71,6 @@ def show():
     epd.draw_rectangle(frame_black, 5, 150, 195, 195, COLORED)
     epd.draw_rectangle(frame_black, 100, 150, 100, 195, COLORED)
 
-    # display the frame
-    epd.display_frame(frame_black, frame_red)
-
     # draw red headers
     epd.draw_filled_rectangle(frame_red, 5, 5, 195, 50, COLORED)
     epd.draw_filled_rectangle(frame_red, 5, 105, 195, 150, COLORED)
