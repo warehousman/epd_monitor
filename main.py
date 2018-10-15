@@ -24,14 +24,13 @@ endpoint = "http://192.168.1.151:82/mahm"
 COLORED = 1
 UNCOLORED = 0
 
-r=requests.get(endpoint, auth=HTTPBasicAuth(username, password))
-
 font_b = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 32)
 font_b2 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 24)
 
 epd = epd1in54b.EPD()
 
 def get_stats():
+    r=requests.get(endpoint, auth=HTTPBasicAuth(username, password))
     if r.status_code == 200:
         returnDatas = {}
         xmldoc = parseString(r.text.encode('utf-8'))
