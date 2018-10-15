@@ -25,9 +25,9 @@
  ##
 
 import epd1in54b
-import Image
-import ImageFont
-import ImageDraw
+from pillow import Image
+from pillow import ImageFont
+from pillow import ImageDraw
 #import imagedata
 
 COLORED = 1
