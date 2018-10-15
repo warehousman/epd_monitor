@@ -4,6 +4,7 @@
  #
  #  Copyright (C) warehousman     October 15 2018
 
+import time
 import epd1in54b
 from PIL import Image
 from PIL import ImageDraw
