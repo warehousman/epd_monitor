@@ -1,8 +1,7 @@
 import epd1in54b
-import Image
-import ImageFont
-import ImageDraw
-#import imagedata
+from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
 
 COLORED = 1
 UNCOLORED = 0
