@@ -54,7 +54,7 @@ def main():
 #    epd.draw_filled_circle(frame_red, 120, 150, 30, COLORED)
 
     # write strings to the buffer
-    font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 18)
+    font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 28)
     epd.display_string_at(frame_black, 60, 60, get_temp(), font, COLORED)
     epd.display_string_at(frame_red, 28, 10, "Hello world!", font, UNCOLORED)
     # display the frame
