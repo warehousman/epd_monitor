@@ -6,11 +6,11 @@
 
 import math
 import time
+
 import epd1in54b
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
-#import imagedata
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -26,7 +26,6 @@ UNCOLORED = 0
 
 r=requests.get(endpoint, auth=HTTPBasicAuth(username, password))
 
-font_w = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 28)
 font_b = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 32)
 font_b2 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 24)
 
@@ -51,7 +50,20 @@ def show():
     frame_black = [0xFF] * 5000
     frame_red = [0xFF] * 5000
 
-# draw red headers
+# write strings to the buffer 
+    epd.display_string_at(frame_black, 20, 60, str(data['gpu-temperature']), font_b, COLORED)
+    epd.display_string_at(frame_black, 60, 60, "C", font_b2, COLORED)
+    
+    epd.display_string_at(frame_black, 130, 60, str(data['gpu-usage']), font_b, COLORED)
+    epd.display_string_at(frame_black, 170, 60, "%", font_b2, COLORED)
+    
+    epd.display_string_at(frame_black, 20, 160, str(data['cpu-temperature']), font_b, COLORED)
+    epd.display_string_at(frame_black, 60, 160, "C", font_b2, COLORED)
+    
+    epd.display_string_at(frame_black, 130, 160, str(data['cpu-usage']), font_b, COLORED)
+    epd.display_string_at(frame_black, 170, 160, "%", font_b2, COLORED)
+
+    # draw red headers
     epd.draw_filled_rectangle(frame_red, 5, 5, 195, 50, COLORED)
     epd.draw_filled_rectangle(frame_red, 5, 105, 195, 150, COLORED)
     
@@ -65,16 +77,7 @@ def show():
     epd.draw_rectangle(frame_black, 5, 105, 195, 195, COLORED)
     epd.draw_rectangle(frame_black, 5, 150, 195, 195, COLORED)
     epd.draw_rectangle(frame_black, 100, 150, 100, 195, COLORED)
-
-# write strings to the buffer 
-    epd.display_string_at(frame_black, 20, 60, str(data['gpu-temperature']), font_b, COLORED)
-    epd.display_string_at(frame_black, 60, 60, "C", font_b2, COLORED)
-    epd.display_string_at(frame_black, 130, 60, str(data['gpu-usage']), font_b, COLORED)
-    epd.display_string_at(frame_black, 170, 60, "%", font_b2, COLORED)
-    epd.display_string_at(frame_black, 20, 160, str(data['cpu-temperature']), font_b, COLORED)
-    epd.display_string_at(frame_black, 60, 160, "C", font_b2, COLORED)
-    epd.display_string_at(frame_black, 130, 160, str(data['cpu-usage']), font_b, COLORED)
-    epd.display_string_at(frame_black, 170, 160, "%", font_b2, COLORED)
+    
     # display the frame
     epd.display_frame(frame_black, frame_red)
 
