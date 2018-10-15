@@ -30,6 +30,15 @@ font_b2 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.tt
 
 epd = epd1in54b.EPD()
 epd.init()
+frame_black = [0xFF] * 5000
+frame_red = [0xFF] * 5000
+epd.draw_filled_rectangle(frame_red, 0, 0, 200, 200, COLORED)
+epd.display_frame(frame_black, frame_red)
+time.sleep(5)
+epd.draw_filled_rectangle(frame_black, 0, 0, 200, 200, COLORED)
+epd.display_frame(frame_black, frame_red)
+time.sleep(5)
+
 epd.display_frame(imagedata.IMAGE_BLACK, imagedata.IMAGE_RED)
 
 def get_stats():
