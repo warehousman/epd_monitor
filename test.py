@@ -3,8 +3,29 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
+import requests
+from requests.auth import HTTPBasicAuth
+from xml.dom.minidom import parse, parseString
+from slugify import slugify
+
+username = "MSIAfterburner"
+password = "17cc95b4017d496f82"
+endpoint = "http://192.168.1.151:82/mahm"
+
 COLORED = 1
 UNCOLORED = 0
+
+def get_stats():
+    if r.status_code == 200:
+        returnDatas = {}
+        xmldoc = parseString(r.text.encode('utf-8'))
+        dataslist = xmldoc.getElementsByTagName('HardwareMonitorEntry')
+        for s in dataslist:
+            childs = s.childNodes
+            key = slugify(childs[0].firstChild.nodeValue)
+            returnDatas[key] = math.trunc(float(childs[5].firstChild.nodeValue))
+
+        print (returnDatas)
 
 def main():
     epd = epd1in54b.EPD()
