@@ -96,4 +96,4 @@ if __name__ == '__main__':
         epd.init()
         show()
         epd.sleep()
-        time.sleep(10)
+        time.sleep(5)
