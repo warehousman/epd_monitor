@@ -69,11 +69,11 @@ def show():
     epd.display_string_at(frame_black, 28, 10, "GPU:", font_b, COLORED)
     epd.display_string_at(frame_black, 28, 110, "CPU:", font_b, COLORED)    
     epd.display_string_at(frame_black, 20, 60, str(data['gpu-temperature']), font_b, COLORED)
-    epd.display_string_at(frame_black, 60, 60, "*C", font_b2, COLORED)
+    epd.display_string_at(frame_black, 60, 60, "C", font_b2, COLORED)
     epd.display_string_at(frame_black, 130, 60, str(data['gpu-usage']), font_b, COLORED)
     epd.display_string_at(frame_black, 170, 60, "%", font_b2, COLORED)
     epd.display_string_at(frame_black, 20, 160, str(data['cpu-temperature']), font_b, COLORED)
-    epd.display_string_at(frame_black, 60, 160, "*C", font_b2, COLORED)
+    epd.display_string_at(frame_black, 60, 160, "C", font_b2, COLORED)
     epd.display_string_at(frame_black, 130, 160, str(data['cpu-usage']), font_b, COLORED)
     epd.display_string_at(frame_black, 170, 160, "%", font_b2, COLORED)
     # display the frame
