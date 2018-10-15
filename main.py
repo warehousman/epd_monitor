@@ -46,18 +46,20 @@ def get_stats():
 def show():
     data = get_stats()
 
-    # clear the frame buffer
+# clear the frame buffer
     frame_black = [0xFF] * 5000
     frame_red = [0xFF] * 5000
 
-    # draw headers
-    epd.draw_filled_rectangle(frame_red, 10, 10, 190, 36, COLORED)
-    epd.draw_filled_rectangle(frame_red, 10, 110, 190, 136, COLORED)
-    epd.display_string_at(frame_red, 28, 10, "GPU", font_w, UNCOLORED)
-    epd.display_string_at(frame_red, 28, 110, "CPU", font_w, UNCOLORED)
-    epd.display_frame(frame_black, frame_red)
+# draw headers
+#    epd.draw_filled_rectangle(frame_red, 10, 10, 190, 36, COLORED)
+#    epd.draw_filled_rectangle(frame_red, 10, 110, 190, 136, COLORED)
+#    epd.display_string_at(frame_red, 28, 10, "GPU", font_w, UNCOLORED)
+#    epd.display_string_at(frame_red, 28, 110, "CPU", font_w, UNCOLORED)
+#    epd.display_frame(frame_black, frame_red)
 
-    # write strings to the buffer
+# write strings to the buffer
+    epd.display_string_at(frame_red, 28, 10, "GPU", font_b, COLORED)
+    epd.display_string_at(frame_red, 28, 110, "CPU", font_b, COLORED)    
     epd.display_string_at(frame_black, 20, 60, str(data['gpu-temperature']), font_b, COLORED)
     epd.display_string_at(frame_black, 110, 60, str(data['gpu-usage']), font_b, COLORED)
     epd.display_string_at(frame_black, 20, 160, str(data['cpu-temperature']), font_b, COLORED)
