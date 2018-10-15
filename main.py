@@ -39,8 +39,6 @@ epd.draw_filled_rectangle(frame_black, 0, 0, 200, 200, COLORED)
 epd.display_frame(frame_black, frame_red)
 time.sleep(5)
 
-epd.display_frame(imagedata.IMAGE_BLACK, imagedata.IMAGE_RED)
-
 def get_stats():
     r=requests.get(endpoint, auth=HTTPBasicAuth(username, password))
     if r.status_code == 200:
