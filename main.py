@@ -64,7 +64,7 @@ def show():
     epd.draw_filled_rectangle(frame_red, 5, 5, 195, 50, COLORED)
     epd.draw_filled_rectangle(frame_red, 5, 105, 195, 150, COLORED)
     
-    epd.display_frame(frame_red)
+    epd.display_frame(frame_black, frame_red)
 
 
     epd.draw_rectangle(frame_black, 5, 5, 195, 95, COLORED)
@@ -85,7 +85,7 @@ def show():
     epd.display_string_at(frame_black, 130, 160, str(data['cpu-usage']), font_b, COLORED)
     epd.display_string_at(frame_black, 170, 160, "%", font_b2, COLORED)
     # display the frame
-    epd.display_frame(frame_black)
+    epd.display_frame(frame_black, frame_red)
 
 
 if __name__ == '__main__':
