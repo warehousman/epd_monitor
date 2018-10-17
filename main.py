@@ -27,12 +27,6 @@ font_b2 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.tt
 
 epd = epd1in54b.EPD()
 epd.init()
-frame_black = [0xFF] * 5000
-frame_red = [0xFF] * 5000
-epd.draw_filled_rectangle(frame_red, 0, 0, 200, 200, COLORED)
-epd.draw_filled_rectangle(frame_black, 0, 0, 200, 200, COLORED)
-epd.display_frame(frame_black, frame_red)
-time.sleep(5)
 
 def get_stats():
     try:
@@ -48,8 +42,7 @@ def get_stats():
 
             return (returnDatas)
     except:
-        returnDatas = {'gpu-temperature': 'n/a', 'gpu-usage': 'n/a','cpu-temperature': 'n/a','cpu-usage': 'n/a'}
-        return (returnDatas)
+        print("no connection")
 
 def show():
     data = get_stats()
@@ -58,43 +51,39 @@ def show():
     frame_black = [0xFF] * 5000
     frame_red = [0xFF] * 5000
 
-# write strings to the buffer 
-    epd.display_string_at(frame_black, 20, 60, str(data['gpu-temperature']), font_b, COLORED)
-    if str(data['gpu-temperature']) != 'n/a':
+# write strings to the buffer
+    if data['gpu-temperature']:
         epd.display_string_at(frame_black, 60, 60, "C", font_b2, COLORED)
-
-    epd.display_string_at(frame_black, 130, 60, str(data['gpu-usage']), font_b, COLORED)
-    if str(data['gpu-usage']) != 'n/a':
+        epd.display_string_at(frame_black, 20, 60, str(data['gpu-temperature']), font_b, COLORED)
+    
+    if data['gpu-usage']:
         epd.display_string_at(frame_black, 170, 60, "%", font_b2, COLORED)
-    
-    epd.display_string_at(frame_black, 20, 160, str(data['cpu-temperature']), font_b, COLORED)
-    if str(data['cpu-temperature']) != 'n/a':
-        epd.display_string_at(frame_black, 60, 160, "C", font_b2, COLORED)
-    
-    epd.display_string_at(frame_black, 130, 160, str(data['cpu-usage']), font_b, COLORED)
-    if str(data['cpu-usage']) != 'n/a':
-        epd.display_string_at(frame_black, 170, 160, "%", font_b2, COLORED)
+        epd.display_string_at(frame_black, 130, 60, str(data['gpu-usage']), font_b, COLORED)
 
+    if data['cpu-temperature']:
+        epd.display_string_at(frame_black, 60, 160, "C", font_b2, COLORED)
+        epd.display_string_at(frame_black, 20, 160, str(data['cpu-temperature']), font_b, COLORED)
+
+    if data['cpu-usage']:
+        epd.display_string_at(frame_black, 170, 160, "%", font_b2, COLORED)
+        epd.display_string_at(frame_black, 130, 160, str(data['cpu-usage']), font_b, COLORED)
+
+# draw frame
     epd.draw_rectangle(frame_black, 5, 5, 195, 95, COLORED)
     epd.draw_rectangle(frame_black, 5, 50, 195, 95, COLORED)
     epd.draw_rectangle(frame_black, 100, 50, 100, 95, COLORED)
-    
     epd.draw_rectangle(frame_black, 5, 105, 195, 195, COLORED)
     epd.draw_rectangle(frame_black, 5, 150, 195, 195, COLORED)
     epd.draw_rectangle(frame_black, 100, 150, 100, 195, COLORED)
 
-    # draw red headers
-#    epd.draw_filled_rectangle(frame_red, 5, 5, 195, 50, COLORED)
+# draw headers
     epd.draw_filled_rectangle(frame_black, 5, 5, 195, 50, COLORED)
-#    epd.draw_filled_rectangle(frame_red, 5, 105, 195, 150, COLORED)
     epd.draw_filled_rectangle(frame_black, 5, 105, 195, 150, COLORED)
-    
     epd.display_string_at(frame_black, 28, 10, "GPU:", font_b, UNCOLORED)
     epd.display_string_at(frame_black, 28, 110, "CPU:", font_b, UNCOLORED)  
 
-    # display the frame
+# display the frame
     epd.display_frame(frame_black, frame_red)
-
 
 if __name__ == '__main__':
     while True:
