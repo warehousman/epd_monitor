@@ -39,7 +39,8 @@ def get_pc_stats():
                 childs = s.childNodes
                 key = slugify(childs[0].firstChild.nodeValue)
                 returnDatas[key] = math.trunc(float(childs[5].firstChild.nodeValue))
-    return returnDatas
+    except:
+        return returnDatas
     return returnDatas
 
 def epd_show_pc_stats():
