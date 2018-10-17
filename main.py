@@ -38,18 +38,19 @@ epd.display_frame(frame_black, frame_red)
 time.sleep(5)
 
 def get_stats():
-    r=requests.get(endpoint, auth=HTTPBasicAuth(username, password))
-    if r.status_code == 200:
-        returnDatas = {}
-        xmldoc = parseString(r.text.encode('utf-8'))
-        dataslist = xmldoc.getElementsByTagName('HardwareMonitorEntry')
-        for s in dataslist:
-            childs = s.childNodes
-            key = slugify(childs[0].firstChild.nodeValue)
-            returnDatas[key] = math.trunc(float(childs[5].firstChild.nodeValue))
+    try:
+        r=requests.get(endpoint, auth=HTTPBasicAuth(username, password))
+        if r.status_code == 200:
+            returnDatas = {}
+            xmldoc = parseString(r.text.encode('utf-8'))
+            dataslist = xmldoc.getElementsByTagName('HardwareMonitorEntry')
+            for s in dataslist:
+                childs = s.childNodes
+                key = slugify(childs[0].firstChild.nodeValue)
+                returnDatas[key] = math.trunc(float(childs[5].firstChild.nodeValue))
 
-        return (returnDatas)
-    else:
+            return (returnDatas)
+    except:
         returnDatas = {'gpu-temperature': 'n/a', 'gpu-usage': 'n/a','cpu-temperature': 'n/a','cpu-usage': 'n/a'}
         return (returnDatas)
 
