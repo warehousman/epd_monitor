@@ -29,10 +29,10 @@ epd = epd1in54b.EPD()
 epd.init()
 
 def get_stats():
+    returnDatas = {}
     try:
         r=requests.get(endpoint, auth=HTTPBasicAuth(username, password))
         if r.status_code == 200:
-            returnDatas = {}
             xmldoc = parseString(r.text.encode('utf-8'))
             dataslist = xmldoc.getElementsByTagName('HardwareMonitorEntry')
             for s in dataslist:
@@ -40,9 +40,10 @@ def get_stats():
                 key = slugify(childs[0].firstChild.nodeValue)
                 returnDatas[key] = math.trunc(float(childs[5].firstChild.nodeValue))
 
-            return (returnDatas)
+            return returnDatas
     except:
         print("no connection")
+    return returnDatas
 
 def show():
     data = get_stats()
