@@ -28,7 +28,7 @@ font_b2 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.tt
 epd = epd1in54b.EPD()
 epd.init()
 
-def get_stats():
+def get_pc_stats():
     returnDatas = {}
     try:
         r=requests.get(endpoint, auth=HTTPBasicAuth(username, password))
@@ -45,8 +45,8 @@ def get_stats():
         print("no connection")
     return returnDatas
 
-def show():
-    data = get_stats()
+def epd_show_pc_stats():
+    data = get_pc_stats()
 
 # clear the frame buffer
     frame_black = [0xFF] * 5000
@@ -69,7 +69,7 @@ def show():
         epd.display_string_at(frame_black, 170, 160, "%", font_b2, COLORED)
         epd.display_string_at(frame_black, 130, 160, str(data['cpu-usage']), font_b, COLORED)
 
-# draw frame
+# draw cells
     epd.draw_rectangle(frame_black, 5, 50, 100, 95, COLORED)
     epd.draw_rectangle(frame_black, 100, 50, 200, 95, COLORED)
     epd.draw_rectangle(frame_black, 5, 105, 100, 195, COLORED)
@@ -87,6 +87,6 @@ def show():
 if __name__ == '__main__':
     while True:
         epd.init()
-        show()
+        epd_show_pc_stats()
         epd.sleep()
         time.sleep(5)
