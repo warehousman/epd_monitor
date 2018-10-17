@@ -60,16 +60,20 @@ def show():
 
 # write strings to the buffer 
     epd.display_string_at(frame_black, 20, 60, str(data['gpu-temperature']), font_b, COLORED)
-    epd.display_string_at(frame_black, 60, 60, "C", font_b2, COLORED) if str(data['gpu-temperature'] == 'n/a'
+    if str(data['gpu-temperature'] == 'n/a':
+        epd.display_string_at(frame_black, 60, 60, "C", font_b2, COLORED)
 
     epd.display_string_at(frame_black, 130, 60, str(data['gpu-usage']), font_b, COLORED)
-    epd.display_string_at(frame_black, 170, 60, "%", font_b2, COLORED) if str(data['gpu-usage'] == 'n/a'
+    if str(data['gpu-usage'] == 'n/a':
+        epd.display_string_at(frame_black, 170, 60, "%", font_b2, COLORED)
     
     epd.display_string_at(frame_black, 20, 160, str(data['cpu-temperature']), font_b, COLORED)
-    epd.display_string_at(frame_black, 60, 160, "C", font_b2, COLORED) if str(data['cpu-temperature'] == 'n/a'
+    if str(data['cpu-temperature'] == 'n/a':
+        epd.display_string_at(frame_black, 60, 160, "C", font_b2, COLORED)
     
     epd.display_string_at(frame_black, 130, 160, str(data['cpu-usage']), font_b, COLORED)
-    epd.display_string_at(frame_black, 170, 160, "%", font_b2, COLORED) if str(data['cpu-usage'] == 'n/a'
+    if str(data['cpu-usage'] == 'n/a':
+        epd.display_string_at(frame_black, 170, 160, "%", font_b2, COLORED)
 
     epd.draw_rectangle(frame_black, 5, 5, 195, 95, COLORED)
     epd.draw_rectangle(frame_black, 5, 50, 195, 95, COLORED)
