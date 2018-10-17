@@ -53,19 +53,19 @@ def show():
     frame_red = [0xFF] * 5000
 
 # write strings to the buffer
-    if data['gpu-temperature']:
+    if 'gpu-temperature' in data:
         epd.display_string_at(frame_black, 60, 60, "C", font_b2, COLORED)
         epd.display_string_at(frame_black, 20, 60, str(data['gpu-temperature']), font_b, COLORED)
     
-    if data['gpu-usage']:
+    if 'gpu-usage' in data:
         epd.display_string_at(frame_black, 170, 60, "%", font_b2, COLORED)
         epd.display_string_at(frame_black, 130, 60, str(data['gpu-usage']), font_b, COLORED)
 
-    if data['cpu-temperature']:
+    if 'cpu-temperature' in data:
         epd.display_string_at(frame_black, 60, 160, "C", font_b2, COLORED)
         epd.display_string_at(frame_black, 20, 160, str(data['cpu-temperature']), font_b, COLORED)
 
-    if data['cpu-usage']:
+    if 'cpu-usage' in data:
         epd.display_string_at(frame_black, 170, 160, "%", font_b2, COLORED)
         epd.display_string_at(frame_black, 130, 160, str(data['cpu-usage']), font_b, COLORED)
 
