@@ -41,8 +41,6 @@ def get_pc_stats():
                 returnDatas[key] = math.trunc(float(childs[5].firstChild.nodeValue))
 
             return returnDatas
-    except:
-        print("no connection")
     return returnDatas
 
 def epd_show_pc_stats():
