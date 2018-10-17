@@ -15,8 +15,8 @@ from requests.auth import HTTPBasicAuth
 from xml.dom.minidom import parse, parseString
 from slugify import slugify
 
-username = "MSIAfterburne"
-password = "17cc95b4017d496f82"
+username = "MSIAfterburner"
+password = "17cc95b4017d496f83"
 endpoint = "http://192.168.1.151:82/mahm"
 
 COLORED = 1
