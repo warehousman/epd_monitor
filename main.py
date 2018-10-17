@@ -6,10 +6,8 @@
 
 import math
 import time
-
 import epd1in54b
 from PIL import ImageFont
-
 import requests
 from requests.auth import HTTPBasicAuth
 from xml.dom.minidom import parse, parseString
@@ -18,13 +16,10 @@ from slugify import slugify
 username = "MSIAfterburner"
 password = "17cc95b4017d496f83"
 endpoint = "http://192.168.1.151:82/mahm"
-
 COLORED = 1
 UNCOLORED = 0
-
 font_b = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 32)
 font_b2 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 24)
-
 epd = epd1in54b.EPD()
 epd.init()
 
@@ -45,40 +40,32 @@ def get_pc_stats():
 
 def epd_show_pc_stats():
     data = get_pc_stats()
-
 # clear the frame buffer
     frame_black = [0xFF] * 5000
     frame_red = [0xFF] * 5000
-
 # write strings to the buffer
     if 'gpu-temperature' in data:
         epd.display_string_at(frame_black, 60, 60, "C", font_b2, COLORED)
         epd.display_string_at(frame_black, 20, 60, str(data['gpu-temperature']), font_b, COLORED)
-    
     if 'gpu-usage' in data:
         epd.display_string_at(frame_black, 170, 60, "%", font_b2, COLORED)
         epd.display_string_at(frame_black, 130, 60, str(data['gpu-usage']), font_b, COLORED)
-
     if 'cpu-temperature' in data:
         epd.display_string_at(frame_black, 60, 160, "C", font_b2, COLORED)
         epd.display_string_at(frame_black, 20, 160, str(data['cpu-temperature']), font_b, COLORED)
-
     if 'cpu-usage' in data:
         epd.display_string_at(frame_black, 170, 160, "%", font_b2, COLORED)
         epd.display_string_at(frame_black, 130, 160, str(data['cpu-usage']), font_b, COLORED)
-
 # draw cells
     epd.draw_rectangle(frame_black, 5, 50, 100, 95, COLORED)
     epd.draw_rectangle(frame_black, 100, 50, 200, 95, COLORED)
     epd.draw_rectangle(frame_black, 5, 105, 100, 195, COLORED)
     epd.draw_rectangle(frame_black, 100, 150, 195, 195, COLORED)
-
 # draw headers
     epd.draw_filled_rectangle(frame_black, 5, 5, 195, 50, COLORED)
     epd.draw_filled_rectangle(frame_black, 5, 105, 195, 150, COLORED)
     epd.display_string_at(frame_black, 28, 10, "GPU:", font_b, UNCOLORED)
     epd.display_string_at(frame_black, 28, 110, "CPU:", font_b, UNCOLORED)  
-
 # display the frame
     epd.display_frame(frame_black, frame_red)
 
