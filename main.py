@@ -1,27 +1,52 @@
- #  @filename   :   main.py
- #  @brief      :   epd cpu temperature monitor
- #  @author     :   warehousman
- #
- #  Copyright (C) warehousman     October 15 2018
+import os
+from pytz import utc
+import datetime
+import time
+import requests
+import json
+from apscheduler.schedulers.background import BlockingScheduler
 
 import math
-import time
 import epd1in54b
 from PIL import ImageFont
-import requests
 from requests.auth import HTTPBasicAuth
 from xml.dom.minidom import parse, parseString
 from slugify import slugify
 
-username = "MSIAfterburner"
-password = "17cc95b4017d496f83"
-endpoint = "http://192.168.1.151:82/mahm"
+username = os.environ.get("MSIAfterburner")
+password = os.environ.get('ABPASS')
+endpoint = os.environ.get("ABURL")
 COLORED = 1
 UNCOLORED = 0
 font_b = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 32)
 font_b2 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 24)
 epd = epd1in54b.EPD()
 epd.init()
+key = os.environ.get('KEY')
+
+def readtemp():
+    url = "http://wareh.local/arduino/gettemp"
+    response = requests.request("GET", url)
+    data = response.json()
+    return(data['temperature'])
+
+def sendtemp():
+    url = "https://thepopovs.herokuapp.com/api/temp"
+    ts = datetime.datetime.now().timestamp()
+    temp = readtemp()
+    payload = json.dumps({'user_id': int(key),
+                          'timestamp': 'ts',
+                          'payload':{
+                             'percent': temp,
+                             'delta': 'amplitude'},
+                          'type': 'amplitude'
+                        })
+    headers = {
+    'Content-Type': "application/json",
+    'cache-control': "no-cache",
+    }
+    response = requests.request("POST", url, data=payload, headers=headers)
+    print(response, temp)    
 
 def get_pc_stats():
     returnDatas = {}
@@ -70,8 +95,16 @@ def epd_show_pc_stats():
     epd.display_frame(frame_black, frame_red)
 
 if __name__ == '__main__':
-    while True:
-        epd.init()
-        epd_show_pc_stats()
-        epd.sleep()
-        time.sleep(5)
+    print('Starting scheduler')
+    scheduler = BlockingScheduler(timezone=utc)
+    scheduler.add_job(sendtemp, 'interval', seconds=10)
+    scheduler.start()
+    try:
+        while True:
+            epd.init()
+            epd_show_pc_stats()
+            epd.sleep()
+            time.sleep(15)    
+    except (KeyboardInterrupt, SystemExit):
+        print('Shutdown scheduler')
+        scheduler.shutdown()
