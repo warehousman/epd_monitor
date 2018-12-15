@@ -4,7 +4,7 @@ import datetime
 import time
 import requests
 import json
-from apscheduler.schedulers.background import BlockingScheduler
+from apscheduler.schedulers.background import BackgroundScheduler
 
 import math
 import epd1in54b
@@ -96,7 +96,7 @@ def epd_show_pc_stats():
 
 if __name__ == '__main__':
     print('Starting scheduler')
-    scheduler = BlockingScheduler(timezone=utc)
+    scheduler = BackgroundScheduler(timezone=utc)
     scheduler.add_job(sendtemp, 'interval', seconds=10)
     scheduler.start()
     try:
