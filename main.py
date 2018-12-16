@@ -113,7 +113,7 @@ if __name__ == '__main__':
     print('Starting scheduler')
     logging.basicConfig()
     scheduler = BackgroundScheduler(timezone=utc)
-    scheduler.add_job(sendtemp, 'interval', seconds=10)
+    scheduler.add_job(sendtemp, 'interval', seconds=900)
     scheduler.start()
     print("Starting epd")
     try:
