@@ -42,7 +42,7 @@ def sendtemp():
         ts = datetime.datetime.now()
         temp = readtemp()
         payload = json.dumps({'user_id': int(key),
-                              'timestamp': 'ts',
+                              'timestamp': ts,
                               'payload':{
                                  'percent': temp,
                                  'delta': 'amplitude'},
