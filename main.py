@@ -5,6 +5,7 @@ import time
 import requests
 import json
 from apscheduler.schedulers.background import BackgroundScheduler
+import logging
 
 import math
 import epd1in54b
@@ -23,6 +24,7 @@ font_b2 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.tt
 epd = epd1in54b.EPD()
 epd.init()
 key = os.environ.get('KEY')
+
 
 def readtemp():
     url = "http://wareh.local/arduino/gettemp"
@@ -96,14 +98,15 @@ def epd_show_pc_stats():
 
 if __name__ == '__main__':
     print('Starting scheduler')
+    logging.basicConfig()
     scheduler = BackgroundScheduler(timezone=utc)
     scheduler.add_job(sendtemp, 'interval', seconds=10)
     scheduler.start()
     try:
         while True:
-            epd.init()
-            epd_show_pc_stats()
-            epd.sleep()
+#            epd.init()
+#            epd_show_pc_stats()
+#            epd.sleep()
             time.sleep(15)    
     except (KeyboardInterrupt, SystemExit):
         print('Shutdown scheduler')
