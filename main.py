@@ -6,7 +6,6 @@ import requests
 import json
 from apscheduler.schedulers.background import BackgroundScheduler
 import logging
-
 import math
 import epd1in54b
 from PIL import ImageFont
@@ -24,9 +23,7 @@ font_b2 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.tt
 epd = epd1in54b.EPD()
 epd.init()
 print("epd init")
-
 key = os.environ.get('KEY')
-
 
 def readtemp():
     url = "http://wareh.local/arduino/gettemp"
@@ -50,7 +47,7 @@ def sendtemp():
     'cache-control': "no-cache",
     }
     response = requests.request("POST", url, data=payload, headers=headers)
-    print(payload, response, temp)    
+    print(response, temp)    
 
 def get_pc_stats():
     returnDatas = {}
@@ -102,7 +99,7 @@ if __name__ == '__main__':
     print('Starting scheduler')
     logging.basicConfig()
     scheduler = BackgroundScheduler(timezone=utc)
-    scheduler.add_job(sendtemp, 'interval', seconds=10)
+    scheduler.add_job(sendtemp, 'interval', seconds=900)
     scheduler.start()
     print("Starting epd")
     try:
@@ -110,7 +107,7 @@ if __name__ == '__main__':
             epd.init()
             epd_show_pc_stats()
             epd.sleep()
-            time.sleep(15)    
+            time.sleep(30)    
     except (KeyboardInterrupt, SystemExit):
         print('Shutdown scheduler')
         scheduler.shutdown()
