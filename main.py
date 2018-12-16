@@ -27,13 +27,14 @@ print("epd init")
 key = os.environ.get('KEY')
 
 def readtemp():
+    data = {}
     try:
         url = "http://wareh.local/arduino/gettemp"
         response = requests.request("GET", url)
         data = response.json()
+        return(data['temperature'])
     except:
         pass
-    return(data['temperature'])
 
 def sendtemp():
     try:
@@ -52,10 +53,10 @@ def sendtemp():
         'cache-control': "no-cache",
         }
         response = requests.request("POST", url, data=payload, headers=headers)
-        print(response, temp)    
+        print(response, temp)
+        return response.status_code    
     except:
         pass
-    return response.status_code
 
 def get_pc_stats():
     returnDatas = {}
@@ -68,9 +69,9 @@ def get_pc_stats():
                 childs = s.childNodes
                 key = slugify(childs[0].firstChild.nodeValue)
                 returnDatas[key] = math.trunc(float(childs[5].firstChild.nodeValue))
+        return returnDatas
     except:
         pass
-    return returnDatas
 
 def epd_show_pc_stats():
     data = get_pc_stats()
