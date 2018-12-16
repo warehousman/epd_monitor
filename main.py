@@ -55,7 +55,7 @@ def sendtemp():
         print(response, temp)    
     except:
         pass
-    return: response.status_code
+    return response.status_code
 
 def get_pc_stats():
     returnDatas = {}
