@@ -27,28 +27,35 @@ print("epd init")
 key = os.environ.get('KEY')
 
 def readtemp():
-    url = "http://wareh.local/arduino/gettemp"
-    response = requests.request("GET", url)
-    data = response.json()
+    try:
+        url = "http://wareh.local/arduino/gettemp"
+        response = requests.request("GET", url)
+        data = response.json()
+    except:
+        pass
     return(data['temperature'])
 
 def sendtemp():
-    url = "https://thepopovs.herokuapp.com/api/temp"
-    ts = datetime.datetime.now()
-    temp = readtemp()
-    payload = json.dumps({'user_id': int(key),
-                          'timestamp': 'ts',
-                          'payload':{
-                             'percent': temp,
-                             'delta': 'amplitude'},
-                          'type': 'amplitude'
-                        })
-    headers = {
-    'Content-Type': "application/json",
-    'cache-control': "no-cache",
-    }
-    response = requests.request("POST", url, data=payload, headers=headers)
-    print(response, temp)    
+    try:
+        url = "https://thepopovs.herokuapp.com/api/temp"
+        ts = datetime.datetime.now()
+        temp = readtemp()
+        payload = json.dumps({'user_id': int(key),
+                              'timestamp': 'ts',
+                              'payload':{
+                                 'percent': temp,
+                                 'delta': 'amplitude'},
+                              'type': 'amplitude'
+                            })
+        headers = {
+        'Content-Type': "application/json",
+        'cache-control': "no-cache",
+        }
+        response = requests.request("POST", url, data=payload, headers=headers)
+        print(response, temp)    
+    except:
+        pass
+    return: response.status_code
 
 def get_pc_stats():
     returnDatas = {}
