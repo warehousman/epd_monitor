@@ -23,6 +23,8 @@ font_b = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf
 font_b2 = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 24)
 epd = epd1in54b.EPD()
 epd.init()
+print("epd init")
+
 key = os.environ.get('KEY')
 
 
