@@ -36,7 +36,7 @@ def readtemp():
 
 def sendtemp():
     url = "https://thepopovs.herokuapp.com/api/temp"
-    ts = datetime.datetime.now().timestamp()
+    ts = datetime.datetime.now()
     temp = readtemp()
     payload = json.dumps({'user_id': int(key),
                           'timestamp': 'ts',
@@ -104,7 +104,7 @@ if __name__ == '__main__':
     scheduler = BackgroundScheduler(timezone=utc)
     scheduler.add_job(sendtemp, 'interval', seconds=10)
     scheduler.start()
-    print("starting epd")
+    print("Starting epd")
     try:
         while True:
             epd.init()
