@@ -39,7 +39,7 @@ def readtemp():
 def sendtemp():
 #    try:
         url = "https://thepopovs.herokuapp.com/api/temp"
-        ts = datetime.datetime.now()
+        ts = datetime.datetime.now().isoformat()
         temp = readtemp()
         payload = json.dumps({'user_id': int(key),
                               'timestamp': ts,
