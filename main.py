@@ -90,18 +90,18 @@ def epd_show_pc_stats():
         epd.display_string_at(frame_black, 170, 35, "%", font_b2, COLORED)
         epd.display_string_at(frame_black, 130, 35, str(data['gpu-usage']), font_b, COLORED)
     if 'cpu-temperature' in data:
-        epd.display_string_at(frame_black, 60, 110, "C", font_b2, COLORED)
-        epd.display_string_at(frame_black, 20, 110, str(data['cpu-temperature']), font_b, COLORED)
+        epd.display_string_at(frame_black, 60, 105, "C", font_b2, COLORED)
+        epd.display_string_at(frame_black, 20, 105, str(data['cpu-temperature']), font_b, COLORED)
     if 'cpu-usage' in data:
-        epd.display_string_at(frame_black, 170, 110, "%", font_b2, COLORED)
-        epd.display_string_at(frame_black, 130, 110, str(data['cpu-usage']), font_b, COLORED)
+        epd.display_string_at(frame_black, 170, 105, "%", font_b2, COLORED)
+        epd.display_string_at(frame_black, 130, 105, str(data['cpu-usage']), font_b, COLORED)
     if airtemp:
         epd.display_string_at(frame_black, 90, 155, str(airtemp), font_b, COLORED)   
 # draw cells
-    epd.draw_rectangle(frame_black, 5, 25, 100, 75, COLORED)
-    epd.draw_rectangle(frame_black, 100, 25, 195, 75, COLORED)
-    epd.draw_rectangle(frame_black, 5, 100, 100, 150, COLORED)
-    epd.draw_rectangle(frame_black, 100, 100, 195, 150, COLORED)
+    epd.draw_rectangle(frame_black, 5, 30, 100, 75, COLORED)
+    epd.draw_rectangle(frame_black, 100, 30, 195, 75, COLORED)
+    epd.draw_rectangle(frame_black, 5, 100, 100, 145, COLORED)
+    epd.draw_rectangle(frame_black, 100, 100, 195, 145, COLORED)
     epd.draw_rectangle(frame_black, 5, 150, 195, 195, COLORED)
 # draw headers
     epd.draw_filled_rectangle(frame_black, 5, 5, 195, 30, COLORED)
