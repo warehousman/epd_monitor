@@ -37,7 +37,7 @@ def readtemp():
         pass
 
 def sendtemp():
-    try:
+#    try:
         url = "https://thepopovs.herokuapp.com/api/temp"
         ts = datetime.datetime.now()
         temp = readtemp()
@@ -55,8 +55,8 @@ def sendtemp():
         response = requests.request("POST", url, data=payload, headers=headers)
         print(response, temp)
         return response.status_code    
-    except:
-        pass
+#    except:
+#        pass
 
 def get_pc_stats():
     returnDatas = {}
