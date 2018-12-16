@@ -85,7 +85,7 @@ def epd_show_pc_stats():
         epd.display_string_at(frame_black, 170, 110, "%", font_b2, COLORED)
         epd.display_string_at(frame_black, 130, 110, str(data['cpu-usage']), font_b, COLORED)
     if airtemp:
-        epd.display_string_at(frame_black, 100, 155, str(airtemp), font_b, COLORED)   
+        epd.display_string_at(frame_black, 90, 155, str(airtemp), font_b, COLORED)   
 # draw cells
     epd.draw_rectangle(frame_black, 5, 25, 100, 75, COLORED)
     epd.draw_rectangle(frame_black, 100, 25, 195, 75, COLORED)
