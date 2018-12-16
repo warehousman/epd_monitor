@@ -36,7 +36,7 @@ def sendtemp():
     url = "https://thepopovs.herokuapp.com/api/temp"
     ts = datetime.datetime.now().timestamp()
     temp = readtemp()
-    payload = json.dumps({'user_id': int(key),
+    payload = json.dumps({'user_id': key,
                           'timestamp': 'ts',
                           'payload':{
                              'percent': temp,
