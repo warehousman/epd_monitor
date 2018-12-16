@@ -13,7 +13,7 @@ from requests.auth import HTTPBasicAuth
 from xml.dom.minidom import parse, parseString
 from slugify import slugify
 
-username = os.environ.get("MSIAfterburner")
+username = "MSIAfterburner"
 password = os.environ.get('ABPASS')
 endpoint = os.environ.get("ABURL")
 COLORED = 1
