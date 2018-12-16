@@ -104,6 +104,7 @@ if __name__ == '__main__':
     scheduler = BackgroundScheduler(timezone=utc)
     scheduler.add_job(sendtemp, 'interval', seconds=10)
     scheduler.start()
+    print("starting epd")
     try:
         while True:
             epd.init()
