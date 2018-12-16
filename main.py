@@ -36,7 +36,7 @@ def sendtemp():
     url = "https://thepopovs.herokuapp.com/api/temp"
     ts = datetime.datetime.now().timestamp()
     temp = readtemp()
-    payload = json.dumps({'user_id': key,
+    payload = json.dumps({'user_id': int(key),
                           'timestamp': 'ts',
                           'payload':{
                              'percent': temp,
@@ -48,7 +48,7 @@ def sendtemp():
     'cache-control': "no-cache",
     }
     response = requests.request("POST", url, data=payload, headers=headers)
-    print(response, temp)    
+    print(payload, response, temp)    
 
 def get_pc_stats():
     returnDatas = {}
